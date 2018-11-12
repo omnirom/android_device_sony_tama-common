@@ -13,7 +13,7 @@
 # limitations under the License.
 
 # Platform path
-PLATFORM_COMMON_PATH := device/sony/tama
+PLATFORM_COMMON_PATH := device/sony/tama-common
 PRODUCT_PLATFORM_SOD := true
 
 TARGET_BOARD_PLATFORM := sdm845

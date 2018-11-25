@@ -1,0 +1,12 @@
+# mount point    fstype    device            [device2]   fstype2
+/boot           emmc    /dev/block/bootdevice/by-name/boot              flags=slotselect
+/system         ext4    /dev/block/bootdevice/by-name/system            flags=slotselect
+/system_image   emmc    /dev/block/bootdevice/by-name/system            flags=slotselect
+/vendor         ext4    /dev/block/bootdevice/by-name/vendor            flags=slotselect
+/vendor_image   emmc    /dev/block/bootdevice/by-name/vendor            flags=slotselect
+/data           ext4    /dev/block/bootdevice/by-name/userdata          length=-16384
+/odm            ext4    /dev/block/bootdevice/by-name/oem               flags=slotselect;display="OEM";flashimg;backup;backupname="OEM"
+/odm_image      emmc    /dev/block/bootdevice/by-name/oem               flags=slotselect;display="OEM_image";flashimg;backup;backupname="OEM_image"
+
+/external_sd    auto    /dev/block/mmcblk0p1    /dev/block/mmcblk0      flags=display="Micro SDcard";storage;wipeingui;removable
+/usb-otg        auto    /dev/block/sdg1         /dev/block/sdg          flags=display="USB OTG";storage;wipeingui;removable

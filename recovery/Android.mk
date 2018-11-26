@@ -21,6 +21,17 @@ LOCAL_MODULE_CLASS := ETC
 LOCAL_MODULE_PATH := $(TARGET_ROOT_OUT)
 include $(BUILD_PREBUILT)
 
+# TWRP specific setup
+include $(CLEAR_VARS)
+LOCAL_MODULE := init.recovery.twrp
+LOCAL_SRC_FILES := init.recovery.twrp.rc
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_STEM := init.recovery.twrp
+LOCAL_MODULE_SUFFIX := .rc
+LOCAL_MODULE_CLASS := ETC
+LOCAL_MODULE_PATH := $(TARGET_RECOVERY_ROOT_OUT)
+include $(BUILD_PREBUILT)
+
 # prepdecrypt
 include $(CLEAR_VARS)
 LOCAL_MODULE := prepdecrypt.sh

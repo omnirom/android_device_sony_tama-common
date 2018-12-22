@@ -47,12 +47,15 @@ cp /o/lib64/libssd.so /sbin/
 cp /o/lib64/libtime_genoff.so /sbin/
 cp /o/lib64/libkeymasterdeviceutils.so /sbin/
 cp /o/lib64/libkeymasterprovision.so /sbin/
+cp /o/lib64/libkeymasterutils.so /sbin/
+cp /o/lib64/libqtikeymaster4.so /sbin/
 
 # dependencies from system
 cp /s/system/lib64/android.hardware.boot@1.0.so /sbin/
 cp /s/system/lib64/android.hardware.confirmationui@1.0.so /sbin/
 cp /s/system/lib64/libxml2.so /sbin/
 cp /s/system/lib64/libicuuc.so /sbin/
+cp /s/system/lib64/libion.so /sbin/
 
 # dependencies from vendor
 cp /v/lib64/libgptutils.so /sbin/
@@ -61,12 +64,17 @@ cp /v/lib64/libgptutils.so /sbin/
 # hw_get_module() does not look for them under /sbin
 mkdir -p /vendor/lib64/hw
 cp /o/lib64/hw/android.hardware.gatekeeper@1.0-impl-qti.so /vendor/lib64/hw/
-cp /o/lib64/hw/android.hardware.keymaster@3.0-impl-qti.so /vendor/lib64/hw/
+# Prevent copying 3.0 implementation when 4.0 is available.
+# Keymaster device enumeration would otherwise load both 3.0 and 4.0, with 3.0 crashing due to incompatible libs.
+if [ ! -f /o/bin/hw/android.hardware.keymaster@4.0-service-qti ]; then
+	cp /o/lib64/hw/android.hardware.keymaster@3.0-impl-qti.so /vendor/lib64/hw/
+fi
 cp /v/lib64/hw/bootctrl.sdm845.so /vendor/lib64/hw/
 
 relink /o/bin/qseecomd
 relink /o/bin/hw/android.hardware.gatekeeper@1.0-service-qti
 relink /o/bin/hw/android.hardware.keymaster@3.0-service-qti
+relink /o/bin/hw/android.hardware.keymaster@4.0-service-qti
 
 is_fastboot_twrp=$(getprop ro.boot.fastboot)
 if [ ! -z "$is_fastboot_twrp" ]; then

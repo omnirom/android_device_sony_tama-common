@@ -47,4 +47,5 @@ PRODUCT_PACKAGES += \
     twrp.fstab \
     prepdecrypt.sh \
     init.recovery.twrp \
-    init.recovery.usb
+    init.recovery.usb \
+    init.recovery.keymaster

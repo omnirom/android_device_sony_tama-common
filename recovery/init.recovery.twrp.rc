@@ -50,16 +50,11 @@ service keystore /sbin/keystore /tmp/misc/keystore
     disabled
     seclabel u:r:recovery:s0
 
-service prepdecrypt /sbin/prepdecrypt.sh
-    oneshot
-    disabled
-    user root
-    group root
-    seclabel u:r:recovery:s0
-
 on init
     start hwservicemanager
-    start prepdecrypt
+    # Run prepdecrypt synchronously to ensure decryption
+    # is possible before mounting partitions.
+    exec u:r:recovery:s0 root root -- /sbin/prepdecrypt.sh
 
 on property:crypto.ready=1
     start qseecomd

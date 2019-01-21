@@ -64,9 +64,10 @@ cp /v/lib64/libgptutils.so /sbin/
 # hw_get_module() does not look for them under /sbin
 mkdir -p /vendor/lib64/hw
 cp /o/lib64/hw/android.hardware.gatekeeper@1.0-impl-qti.so /vendor/lib64/hw/
-# Prevent copying 3.0 implementation when 4.0 is available.
+# Only copy 3.0 implementation when device declares support for it.
 # Keymaster device enumeration would otherwise load both 3.0 and 4.0, with 3.0 crashing due to incompatible libs.
-if [ ! -f /o/bin/hw/android.hardware.keymaster@4.0-service-qti ]; then
+keymaster_version=$(getprop ro.vendor.keymaster.version)
+if [ "v3" = "$keymaster_version" ]; then
 	cp /o/lib64/hw/android.hardware.keymaster@3.0-impl-qti.so /vendor/lib64/hw/
 fi
 cp /v/lib64/hw/bootctrl.sdm845.so /vendor/lib64/hw/

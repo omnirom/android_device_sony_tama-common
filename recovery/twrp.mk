@@ -5,6 +5,7 @@
 # user interface
 TW_THEME := portrait_hdpi
 TW_NO_SCREEN_BLANK := true
+TW_SCREEN_BLANK_ON_BOOT := true
 TW_MAX_BRIGHTNESS := 255
 TW_DEFAULT_BRIGHTNESS := 255
 TW_NEW_ION_HEAP := true

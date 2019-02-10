@@ -30,6 +30,7 @@ DEVICE_PACKAGE_OVERLAYS += \
 
 # A/B support
 AB_OTA_UPDATER := true
+TARGET_USES_HARDWARE_QCOM_BOOTCTRL := true
 
 # A/B OTA dexopt package
 PRODUCT_PACKAGES += \
@@ -67,6 +68,13 @@ AB_OTA_PARTITIONS += \
 # Include vndk/vndk-sp/ll-ndk modules
 PRODUCT_PACKAGES += \
     vndk_package
+
+# Device Specific Permissions
+PRODUCT_COPY_FILES += \
+     frameworks/native/data/etc/android.hardware.sensor.gyroscope.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.gyroscope.xml \
+     frameworks/native/data/etc/android.hardware.sensor.barometer.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.barometer.xml \
+     frameworks/native/data/etc/android.hardware.sensor.stepcounter.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.stepcounter.xml \
+     frameworks/native/data/etc/android.hardware.sensor.stepdetector.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.stepdetector.xml
 
 # Audio
 PRODUCT_COPY_FILES += \

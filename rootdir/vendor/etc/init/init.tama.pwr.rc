@@ -63,7 +63,6 @@ on boot
     # enable governor for power cluster
     write /sys/devices/system/cpu/cpu0/online 1
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "interactive"
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_sched_load 1
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_migration_notif 1
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay 19000
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/go_hispeed_load 90
@@ -79,7 +78,6 @@ on boot
     # enable governor for perf cluster
     write /sys/devices/system/cpu/cpu4/online 1
     write /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor "interactive"
-    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/use_sched_load 1
     write /sys/devices/system/cpu/cpu4/cpufreq/interactive/use_migration_notif 1
     write /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay 19000
     write /sys/devices/system/cpu/cpu4/cpufreq/interactive/go_hispeed_load 90
@@ -133,9 +131,6 @@ on boot
     write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/io_percent 50
     write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/hist_memory 20
     write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/hyst_length 10
-    write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/low_power_ceil_mbps 0
-    write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/low_power_io_percent 50
-    write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/low_power_delay 20
     write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/guard_band_mbps 0
     write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/up_scale 250
     write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/idle_mbps 1600
@@ -147,9 +142,6 @@ on boot
     write /sys/class/devfreq/soc:qcom,llccbw/bw_hwmon/io_percent 80
     write /sys/class/devfreq/soc:qcom,llccbw/bw_hwmon/hist_memory 20
     write /sys/class/devfreq/soc:qcom,llccbw/bw_hwmon/hyst_length 10
-    write /sys/class/devfreq/soc:qcom,llccbw/bw_hwmon/low_power_ceil_mbps 0
-    write /sys/class/devfreq/soc:qcom,llccbw/bw_hwmon/low_power_io_percent 80
-    write /sys/class/devfreq/soc:qcom,llccbw/bw_hwmon/low_power_delay 20
     write /sys/class/devfreq/soc:qcom,llccbw/bw_hwmon/guard_band_mbps 0
     write /sys/class/devfreq/soc:qcom,llccbw/bw_hwmon/up_scale 250
     write /sys/class/devfreq/soc:qcom,llccbw/bw_hwmon/idle_mbps 1600
@@ -172,7 +164,7 @@ on boot
 
     #Enable userspace governor for L3 cdsp nodes
     write /sys/class/devfreq/soc:qcom,l3-cdsp/governor "userspace"
-    chown -h system $l3cdsp/userspace/set_freq
+    chown -h system /sys/class/devfreq/soc:qcom,l3-cdsp/userspace/set_freq
 
     #Gold L3 ratio ceil
     write /sys/class/devfreq/soc:qcom,l3-cpu4/mem_latency/ratio_ceil 4000

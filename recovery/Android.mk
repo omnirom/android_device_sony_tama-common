@@ -57,3 +57,19 @@ LOCAL_MODULE_SUFFIX := .sh
 LOCAL_MODULE_CLASS := ETC
 LOCAL_MODULE_PATH := $(TARGET_RECOVERY_ROOT_OUT)/sbin
 include $(BUILD_PREBUILT)
+
+# static manifest for twrp
+# includes only the hals required to get decryption to work
+include $(CLEAR_VARS)
+LOCAL_MODULE := twrp_manifest
+ifeq ($(TARGET_KEYMASTER_V4),true)
+LOCAL_SRC_FILES := twrp_manifest_km4.xml
+else
+LOCAL_SRC_FILES := twrp_manifest_km3.xml
+endif
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_STEM := manifest
+LOCAL_MODULE_SUFFIX := .xml
+LOCAL_MODULE_CLASS := ETC
+LOCAL_MODULE_PATH := $(TARGET_RECOVERY_ROOT_OUT)/vendor/etc/vintf
+include $(BUILD_PREBUILT)

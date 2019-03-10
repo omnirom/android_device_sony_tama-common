@@ -48,4 +48,5 @@ PRODUCT_PACKAGES += \
     prepdecrypt.sh \
     init.recovery.twrp \
     init.recovery.usb \
-    init.recovery.keymaster
+    init.recovery.keymaster \
+    twrp_manifest

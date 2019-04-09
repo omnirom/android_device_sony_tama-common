@@ -4,7 +4,9 @@
 
 # user interface
 TW_THEME := portrait_hdpi
+ifneq (,$(filter $(TARGET_BOOTLOADER_BOARD_NAME),H8416 H9436))
 TW_SCREEN_BLANK_ON_BOOT := true
+endif
 TW_MAX_BRIGHTNESS := 255
 TW_DEFAULT_BRIGHTNESS := 255
 TW_NEW_ION_HEAP := true

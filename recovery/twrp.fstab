@@ -1,7 +1,7 @@
 # mount point    fstype    device            [device2]   fstype2
 /boot           emmc    /dev/block/bootdevice/by-name/boot              flags=slotselect
-/system         ext4    /dev/block/bootdevice/by-name/system            flags=slotselect
-/system_image   emmc    /dev/block/bootdevice/by-name/system            flags=slotselect
+/system_root    ext4    /dev/block/bootdevice/by-name/system			      flags=slotselect;display="System";wipeingui
+/system_image   emmc    /dev/block/bootdevice/by-name/system            flags=slotselect;flashimg;backup;backupname="System"
 /vendor         ext4    /dev/block/bootdevice/by-name/vendor            flags=slotselect
 /vendor_image   emmc    /dev/block/bootdevice/by-name/vendor            flags=slotselect
 /data           ext4    /dev/block/bootdevice/by-name/userdata          length=-16384

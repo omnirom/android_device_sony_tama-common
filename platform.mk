@@ -15,21 +15,19 @@
 # Platform path
 PLATFORM_COMMON_PATH := device/sony/tama-common
 
-$(call inherit-product, device/sony/common/common.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
-$(call inherit-product, $(PLATFORM_COMMON_PATH)/recovery/twrp.mk)
-
 SOMC_PLATFORM := tama
 SOMC_KERNEL_VERSION := 4.9
 KERNEL_PATH := kernel/sony/msm-$(SOMC_KERNEL_VERSION)
+
+$(call inherit-product, device/sony/common/common.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
+$(call inherit-product, $(PLATFORM_COMMON_PATH)/recovery/twrp.mk)
 
 SONY_ROOT := $(PLATFORM_COMMON_PATH)/rootdir
 
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += \
     $(PLATFORM_COMMON_PATH)/overlay
-
-PRODUCT_SHIPPING_API_LEVEL := 26
 
 # A/B support
 AB_OTA_UPDATER := true
